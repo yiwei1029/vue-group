@@ -11,4 +11,6 @@ export default {
 }
 </script>
 
-<style class="less" scoped></style>
+<style class="less" scoped>
+
+</style>
