@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1227705",
+      "name": "lock",
+      "font_class": "lock",
+      "unicode": "e70f",
+      "unicode_decimal": 59151
+    },
+    {
+      "icon_id": "10344722",
+      "name": " User",
+      "font_class": "User",
+      "unicode": "e775",
+      "unicode_decimal": 59253
+    }
+  ]
+}
