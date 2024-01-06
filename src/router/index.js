@@ -6,7 +6,7 @@ import HomeView from '../components/HomeView.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  routes: [{path:'/',redirect:"/login"},
+  routes: [{path:'/',redirect:"/home"},
   { path: '/login', component: LoginView },
 {path:'/home',component:HomeView}]
 })

@@ -18,6 +18,27 @@
       "font_class": "User",
       "unicode": "e775",
       "unicode_decimal": 59253
+    },
+    {
+      "icon_id": "12004874",
+      "name": "Browser",
+      "font_class": "Browser",
+      "unicode": "eaa4",
+      "unicode_decimal": 60068
+    },
+    {
+      "icon_id": "12004981",
+      "name": "Cart",
+      "font_class": "Cart",
+      "unicode": "eaac",
+      "unicode_decimal": 60076
+    },
+    {
+      "icon_id": "22213022",
+      "name": "DASHBOARD",
+      "font_class": "DASHBOARD",
+      "unicode": "e9a7",
+      "unicode_decimal": 59815
     }
   ]
 }
