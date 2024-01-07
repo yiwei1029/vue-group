@@ -10,14 +10,16 @@
         <el-container>
             <el-aside class="el-aside" :width="toggleCollapse ? '50px' : '200px'">
                 <div class="toggle-collapse" @click="toggleCollapseClick">|||</div>
-                <el-menu class="el-menu" :unique-opened="true" :collapse="toggleCollapse">
+                <el-menu class="el-menu" :unique-opened="true" :collapse="toggleCollapse"
+                         router :default-active="activePath">
                     <el-submenu :index="m.id" v-for="m in MenuList" :key="m.id">
                         <template slot="title">
                             <i :class="IconObject[m.id]"></i>
-                            <span>{{ m.name }}</span>
+                            <span class="title_template">{{ m.name }}</span>
                         </template>
                         <el-menu-item-group>
-                            <el-menu-item :index="i.id" v-for="i in m.children" :key="i.id">
+                            <el-menu-item :index="i.path" v-for="i in m.children" :key="i.id"
+                            @click="saveActive(i.path)">
                                 <i class="el-icon-menu"></i>{{ i.name }}
                             </el-menu-item>
                             <!-- <el-menu-item index="1-2">Coupon</el-menu-item> -->
@@ -26,49 +28,61 @@
                 </el-menu>
 
             </el-aside>
-            <el-main class="el-main">Main</el-main>
+            <el-main class="el-main"><router-view></router-view></el-main>
         </el-container>
     </el-container>
 </template>
 <script>
+import router from '@/router';
+
 export default {
+    created(){
+        this.activePath = window.sessionStorage.getItem('activePath')
+    },
     data() {
         return {
             MenuList: [
-                { name: 'Browser', id: '1', children: [{ name: 'Products', id: '1-1' }, { name: 'Coupon', id: '1-2' }] },
-                { name: 'Shopping Cart', id: '2', children: [] },
-                { name: 'Dashboard', id: '3', children: [{ name: 'interface', id: '3-1' }] }
+                { name: 'Browser', id: '1', children: [{ name: 'Products', id: '1-1', path: '/products' }, { name: 'Coupon', id: '1-2', path: '/coupon' }] },
+                { name: 'Shopping Cart', id: '2', children: [{ name: 'Directory', id: '2-1', path: 'directory' }] },
+                { name: 'Dashboard', id: '3', children: [{ name: 'dashboard', id: '3-1', path: 'dashboard' }] }
             ],
             toggleCollapse: false,
             IconObject: {
                 '1': 'iconfont icon-Browser',
                 '2': 'iconfont icon-Cart',
-                '3': 'iconfont icon-DASHBOARD'
-
-
-            }
-
-        }
+                '3': 'iconfont icon-Dashboards'
+            },
+            activePath:''
+        };
     },
-
     methods: {
         backToLogin() {
-            this.$router.push('/login')
+            this.$router.push('/login');
         },
         toggleCollapseClick() {
-            this.toggleCollapse = !this.toggleCollapse
+            this.toggleCollapse = !this.toggleCollapse;
+        },
+        saveActive(activePath){
+            window.sessionStorage.setItem('activePath',activePath)
+
+            this.activePath = activePath
         }
-    }
+    },
+    components: { router }
 }
 </script>
 <style class="less" scoped>
+.title_template {
+    padding-left: 10px;
+}
+
 .toggle-collapse {
     color: #fff;
     text-align: center;
     font-size: 20px;
     line-height: 20px;
     cursor: pointer;
-    letter-spacing: 0.5em;
+    letter-spacing: 0.3rem;
 
 }
 

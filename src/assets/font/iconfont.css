@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1704549624171') format('truetype');
+  src: url('iconfont.ttf?t=1704609538231') format('truetype');
 }
 
 .iconfont {
@@ -11,23 +11,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-lock:before {
-  content: "\e70f";
-}
-
-.icon-User:before {
-  content: "\e775";
-}
-
 .icon-Browser:before {
   content: "\eaa4";
 }
 
-.icon-Cart:before {
-  content: "\eaac";
+.icon-Dashboards:before {
+  content: "\eaa7";
 }
 
-.icon-DASHBOARD:before {
-  content: "\e9a7";
+.icon-Cart:before {
+  content: "\eaac";
 }
 
