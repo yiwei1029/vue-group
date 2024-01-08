@@ -20,12 +20,27 @@
             </el-table-column>
             <el-table-column prop="store" label="store" width="180">
             </el-table-column>
-            <!-- <el-table-column prop="amount" label="amount" width="180"></el-table-column> -->
-            <el-table-column width="180" label="add/delete">
-                <el-input-number @change="handleChange" :min="0">
-                </el-input-number>
+            <!-- 更改數量 -->
+            <el-table-column label="amount">
+                <template slot-scope="scope">
+                    <div>
+                        <el-input-number :min="1" @change="handleChange" size="mini" v-model="scope.row.amount"
+                            placeholder="0" :value="0">
+                        </el-input-number>
+                    </div>
+                </template>
             </el-table-column>
+            <!-- 刪除操作 -->
+            <el-table-column label="operation">
+                <template slot-scope="scope">
+                    <el-button @click.native.prevent="deleteRow(scope.$index, scope.row)" type="danger" size="mini">
+                        delete
+                    </el-button>
+                </template>
+            </el-table-column>
+
         </el-table>
+
     </el-card>
 </template>
 
@@ -38,16 +53,26 @@ export default {
                 pagenum: 1,
                 pagesize: 2
             },
-            CartList: [{ name: 'Iphone', price: 10000, store: 'Apple', amount: 0 },
-            { name: 'Xiaomi TV', price: 2999, store: 'Xiaomi', amount: 0 },
-            { name: 'T-shirt', price: 299, store: 'Adidas', amount: 0 }],
-            total: 0,
+            CartList: [{ name: 'Iphone', price: 10000, store: 'Apple', amount: 3 },
+            { name: 'Xiaomi TV', price: 2999, store: 'Xiaomi', amount: 1 },
+            { name: 'T-shirt', price: 299, store: 'Adidas', amount: 1 }],
+            amount: 0,
+
         }
     },
     methods: {
         async getProdList() {
             const { data: res } = await this.$http.get('products', { params: this.queryInfo })
 
+        },
+        deleteRow(index, rows) {
+            this.CartList.splice(index, 1)
+            // rows.splice(index, 1);
+        },
+        handleChange() {
+            this.CartList.forEach(item => {
+                console.log(item.amount)
+            });
         }
     },
     created() {
