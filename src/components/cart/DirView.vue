@@ -40,7 +40,10 @@
             </el-table-column>
 
         </el-table>
-
+        <el-row :gutter="20" class="cart_total">
+            <el-col :span="6"> Total amount: {{ total_num }}</el-col>
+            <el-col :span="6"> Sum: {{ total_price }} <el-button class="submit" type="primary">sumbit</el-button></el-col>
+        </el-row>
     </el-card>
 </template>
 
@@ -56,12 +59,11 @@ export default {
             CartList: [{ name: 'Iphone', price: 10000, store: 'Apple', amount: 3 },
             { name: 'Xiaomi TV', price: 2999, store: 'Xiaomi', amount: 1 },
             { name: 'T-shirt', price: 299, store: 'Adidas', amount: 1 }],
-            amount: 0,
 
         }
     },
     methods: {
-        async getProdList() {
+        async getCartList() {
             const { data: res } = await this.$http.get('products', { params: this.queryInfo })
 
         },
@@ -73,12 +75,40 @@ export default {
             this.CartList.forEach(item => {
                 console.log(item.amount)
             });
-        }
+        },
+
     },
     created() {
         // this.getProdList()
-    }
-
-
+    },
+    computed: {
+        total_num: function () {
+            let num = 0;
+            this.CartList.forEach((item) => {
+                num += item.amount
+            });
+            return num
+        },
+        total_price: function () {
+            let sum_price = 0;
+            this.CartList.forEach((item) => {
+                sum_price += item.amount * item.price
+            });
+            return sum_price
+        }
+    },
 }
+
+
 </script>
+
+<style lang="less" scoped>
+.cart_total {
+    margin-top: 10px;
+
+    // .submit {
+    //     position: absolute;
+    //     right: 0px;
+    // }
+}
+</style>
