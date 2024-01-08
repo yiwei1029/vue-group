@@ -6,6 +6,8 @@ import HomeView from '../components/HomeView.vue'
 import WelcomeView from '../components/WelcomeView.vue'
 import ProdView from '../components/browser/ProdView.vue'
 import DirView from '../components/cart/DirView.vue'
+import CouponView from '../components/browser/CouponView.vue'
+import DashBoardView from '../components/dashboard/DashBoardView.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -18,6 +20,10 @@ const router = new VueRouter({
       path:'/products',component: ProdView
     },{
       path:'/directory',component: DirView
+    },{
+      path:'/coupon',component:CouponView
+    },{
+      path:'/dashboard',component:DashBoardView
     }]
   }
 ]
