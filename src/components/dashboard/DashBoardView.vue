@@ -40,7 +40,23 @@
                 </el-row>
             </el-aside>
             <!-- Group Plans区域 -->
-            <el-main>Main</el-main>
+            <el-main>
+                <el-card>
+                    <el-row>
+                        <div class="plans-title">Last Group Plans</div>
+                    </el-row>
+                    <el-row>
+                        <el-table :data="GroupPlans" style="width: 100%" :cell-style="{ textAlign: 'center' }"
+                            :header-cell-style="{ textAlign: 'center' }">
+                            <el-table-column prop="time" label="time" width="180">
+                            </el-table-column>
+                            <el-table-column prop="rebate" label="rebate" width="180">
+                            </el-table-column>
+                        </el-table>
+                    </el-row>
+
+                </el-card>
+            </el-main>
         </el-container>
     </el-container>
 </template>
@@ -70,6 +86,16 @@ export default {
             SuccessPct: [
                 { name: 'Suc', value: 80 },
                 { name: 'Fail', value: 20 }
+            ],
+            GroupPlans: [
+                { time: '09:31:00', rebate: 30 },
+                { time: '09:31:00', rebate: 50 },
+                { time: '09:31:00', rebate: 43 },
+                { time: '09:31:00', rebate: 55 },
+                { time: '09:41:00', rebate: 55 },
+                { time: '09:41:00', rebate: 55 },
+                { time: '09:51:00', rebate: 55 },
+                { time: '10:01:00', rebate: 55 },
             ]
 
         }
@@ -192,5 +218,13 @@ export default {
 .el-header {
     height: 100px !important;
     padding: 0;
+}
+
+.el-main {
+    padding: 10px 0px 0px 5px;
+}
+
+.plans-title {
+    text-align: center;
 }
 </style>
