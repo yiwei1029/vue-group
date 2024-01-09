@@ -9,11 +9,11 @@
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
         <!-- 用户名 -->
         <el-form-item prop="username">
-          <el-input v-model="loginForm.username" prefix-icon="iconfont icon-User"></el-input>
+          <el-input v-model="loginForm.username" prefix-icon="el-icon-user"></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
-          <el-input v-model="loginForm.password" prefix-icon="iconfont icon-lock" type="password"></el-input>
+          <el-input v-model="loginForm.password" prefix-icon="el-icon-lock" type="password"></el-input>
         </el-form-item>
         <!-- 按钮区域 -->
         <el-form-item class="btns">
@@ -50,20 +50,20 @@ export default {
       console.log(this)
       this.$refs.loginFormRef.resetFields();
     },
-    login(){
-      this.$refs.loginFormRef.validate( valid=>{
-      if(!valid) return;
-      //   const {data:res} = await this.$http.post("login",this.loginForm)
-      //   if(res.meta.status!=200)  return console.log(''); //登錄失敗
+    login() {
+      this.$refs.loginFormRef.validate(valid => {
+        if (!valid) return;
+        //   const {data:res} = await this.$http.post("login",this.loginForm)
+        //   if(res.meta.status!=200)  return console.log(''); //登錄失敗
         //登錄成功
-      this.$message.success('登錄成功');
-      // const token = res.data.token
-      // window.sessionStorage.setItem('token',token)
-      this.$router.push('/home')
-    
-    }
+        this.$message.success('登錄成功');
+        // const token = res.data.token
+        // window.sessionStorage.setItem('token',token)
+        this.$router.push('/home')
+
+      }
       );
-      
+
     }
   }
 

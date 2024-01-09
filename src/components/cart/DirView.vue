@@ -42,12 +42,25 @@
         </el-table>
         <el-row :gutter="20" class="cart_total">
             <el-col :span="6"> Total amount: {{ total_num }}</el-col>
-            <el-col :span="6"> Sum: {{ total_price }} <el-button class="submit" type="primary">sumbit</el-button></el-col>
+            <el-col :span="6"> Sum: {{ total_price }}</el-col>
+        </el-row>
+        <!-- 三種算法選擇 -->
+        <el-row :gutter="20" class="algo_option" type="flex">
+            <el-col :span="6"><el-card><el-button type="primary">Warehouse</el-button></el-card> </el-col>
+            <el-col :span="6"><el-card><el-button type="success">Greedy</el-button></el-card></el-col>
+            <el-col :span="6"><el-card><el-button type="info">Random</el-button></el-card></el-col>
+        </el-row>
+        <el-row>
+            <el-card>
+                <div id="chart1" style="width:600px;height:400px"></div>
+            </el-card>
         </el-row>
     </el-card>
 </template>
 
 <script>
+import * as echarts from 'echarts'
+
 export default {
     data() {
         return {
@@ -59,7 +72,9 @@ export default {
             CartList: [{ name: 'Iphone', price: 10000, store: 'Apple', amount: 3 },
             { name: 'Xiaomi TV', price: 2999, store: 'Xiaomi', amount: 1 },
             { name: 'T-shirt', price: 299, store: 'Adidas', amount: 1 }],
-
+            Rebate: [{ algo_name: 'WareHouse-First', rebate: 50 },
+            { algo_name: 'Baseline-Greedy', rebate: 20 },
+            { algo_name: 'Baseline-Random', rebate: 10 }]
         }
     },
     methods: {
@@ -80,6 +95,34 @@ export default {
     },
     created() {
         // this.getProdList()
+    },
+    mounted() {
+        var myChart = echarts.init(document.getElementById('chart1'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'Rebate'
+            },
+            tooltip: {},
+            legend: {
+                // data: ['Rebate']
+            },
+            xAxis: {
+                data: this.Rebate.map(item => item.algo_name)
+            },
+            yAxis: {},
+            series: [
+                {
+                    // name: 'Rebate',
+                    type: 'bar',
+                    data: this.Rebate.map(item => item.rebate)
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
     },
     computed: {
         total_num: function () {
@@ -111,4 +154,12 @@ export default {
     //     right: 0px;
     // }
 }
-</style>
+
+.algo_option {
+    margin-top: 10px;
+
+    .el-button {
+        width: 100%;
+    }
+}
+</style>    
