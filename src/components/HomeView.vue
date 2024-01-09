@@ -14,7 +14,10 @@
                     :default-active="activePath">
                     <el-submenu :index="m.id" v-for="m in MenuList" :key="m.id">
                         <template slot="title">
-                            <i :class="IconObject[m.id]"></i>
+                            <!-- <i :class="IconObject[m.id]"></i> -->
+                            <svg class="icon" aria-hidden="true">
+                                <use :xlink:href="IconObject[m.id]"></use>
+                            </svg>
                             <span class="title_template">{{ m.name }}</span>
                         </template>
                         <el-menu-item :index="i.path" v-for="i in m.children" :key="i.id" @click="saveActive(i.path)">
@@ -47,9 +50,12 @@ export default {
             ],
             toggleCollapse: false,
             IconObject: {
-                '1': 'iconfont icon-Browser',
-                '2': 'iconfont icon-Cart',
-                '3': 'iconfont icon-Dashboards'
+                // '1': 'iconfont icon-Browser',
+                // '2': 'iconfont icon-Cart',
+                // '3': 'iconfont icon-Dashboards'
+                '1': '#icon-Browser',
+                '2': '#icon-Cart',
+                '3': '#icon-Dashboards'
             },
             activePath: ''
         };
@@ -71,6 +77,14 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
 .title_template {
     padding-left: 10px;
 }

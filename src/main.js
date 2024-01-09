@@ -7,6 +7,7 @@ import './plugins/element.js'
 import './assets/css/global.css'
 import './assets/font/iconfont.css'
 import axios from 'axios'
+import './assets/font/iconfont.js'
 // axios.defaults.baseURL=''
 Vue.prototype.$http=axios
 new Vue({
