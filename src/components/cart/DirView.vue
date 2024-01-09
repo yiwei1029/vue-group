@@ -116,10 +116,6 @@ export default {
                 {
                     // name: 'Rebate',
                     type: 'bar',
-                    color: [
-                        '#37A2DA',
-                        '#32C5E9',
-                        '#67E0E3'],
                     data: this.Rebate.map(item => item.rebate)
                 }
             ],

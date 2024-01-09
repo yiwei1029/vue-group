@@ -17,16 +17,14 @@
                             <i :class="IconObject[m.id]"></i>
                             <span class="title_template">{{ m.name }}</span>
                         </template>
-                        <el-menu-item-group>
-                            <el-menu-item :index="i.path" v-for="i in m.children" :key="i.id" @click="saveActive(i.path)">
-                                <i class="el-icon-menu"></i>{{ i.name }}
-                            </el-menu-item>
-                            <!-- <el-menu-item index="1-2">Coupon</el-menu-item> -->
-                        </el-menu-item-group>
+                        <el-menu-item :index="i.path" v-for="i in m.children" :key="i.id" @click="saveActive(i.path)">
+                            <i class="el-icon-menu"></i>{{ i.name }}
+                        </el-menu-item>
+                        <!-- <el-menu-item index="1-2">Coupon</el-menu-item> -->
                     </el-submenu>
                 </el-menu>
-
             </el-aside>
+            <!-- 主体区域 -->
             <el-main class="el-main">
                 <router-view></router-view>
             </el-main>
