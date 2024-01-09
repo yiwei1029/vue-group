@@ -10,6 +10,7 @@ import { Card } from 'element-ui'
 import { Row,Col } from 'element-ui'
 import { Table,TableColumn } from 'element-ui'
 import { InputNumber } from 'element-ui'
+import { Statistic } from 'element-ui'
 Vue.prototype.$message=Message
 Vue.use(Button)
 Vue.use(Form)
@@ -31,3 +32,4 @@ Vue.use(Col)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(InputNumber)
+Vue.use(Statistic)

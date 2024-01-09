@@ -50,7 +50,7 @@
             <el-col :span="6"><el-card><el-button type="success">Greedy</el-button></el-card></el-col>
             <el-col :span="6"><el-card><el-button type="info">Random</el-button></el-card></el-col>
         </el-row>
-        <el-row>
+        <el-row class="rebate-chart">
             <el-card>
                 <div id="chart1" style="width:600px;height:400px"></div>
             </el-card>
@@ -116,9 +116,14 @@ export default {
                 {
                     // name: 'Rebate',
                     type: 'bar',
+                    color: [
+                        '#37A2DA',
+                        '#32C5E9',
+                        '#67E0E3'],
                     data: this.Rebate.map(item => item.rebate)
                 }
-            ]
+            ],
+
         };
 
         // 使用刚指定的配置项和数据显示图表。
@@ -161,5 +166,9 @@ export default {
     .el-button {
         width: 100%;
     }
+}
+
+.rebate-chart {
+    margin-top: 20px;
 }
 </style>    
