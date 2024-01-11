@@ -20,15 +20,15 @@
 
             <!-- table區域 -->
             <el-table :data="prodList" style="width: 100%" border>
-                <el-table-column type="index" label="number" width="180">
+                <el-table-column type="index" label="Number" width="180">
                 </el-table-column>
-                <el-table-column prop="name" label="name" width="180">
+                <el-table-column prop="name" label="Name" width="180">
                 </el-table-column>
-                <el-table-column prop="price" label="price" width="180">
+                <el-table-column prop="price" label="Price" width="180">
                 </el-table-column>
-                <el-table-column prop="store" label="store" width="180">
+                <el-table-column prop="store" label="Store" width="180">
                 </el-table-column>
-                <el-table-column width="180" label="operation">
+                <el-table-column width="180" label="Operation">
                     <el-button type="primary" plain>add to cart</el-button>
                 </el-table-column>
             </el-table>
