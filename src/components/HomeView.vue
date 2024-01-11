@@ -2,31 +2,24 @@
     <el-container>
         <el-header class="el-header">
             <div>
-                <img class="homelogo" src="../assets/homelogo.png" alt="">
-                <span>groupRebate用戶中心</span>
-            </div>
-            <el-button type="primary" @click="backToLogin" class="btns">退出</el-button>
-        </el-header>
-        <el-container>
-            <el-aside class="el-aside" :width="toggleCollapse ? '50px' : '200px'">
-                <div class="toggle-collapse" @click="toggleCollapseClick">|||</div>
-                <el-menu class="el-menu" :unique-opened="true" :collapse="toggleCollapse" router
-                    :default-active="activePath">
-                    <el-submenu :index="m.id" v-for="m in MenuList" :key="m.id">
+                <!-- <img class="homelogo" src="../assets/homelogo.png" alt=""> -->
+                <span>Group Rebate</span>
+                <el-menu class="el-menu" :unique-opened="true" router mode="horizontal" :default-active="activePath">
+                    <el-submenu :index="menu.id" v-for="menu in MenuList" :key="menu.id">
                         <template slot="title">
-                            <!-- <i :class="IconObject[m.id]"></i> -->
-                            <svg class="icon" aria-hidden="true">
-                                <use :xlink:href="IconObject[m.id]"></use>
-                            </svg>
-                            <span class="title_template">{{ m.name }}</span>
+                            <span class="title_template">{{ menu.name }}</span>
                         </template>
-                        <el-menu-item :index="i.path" v-for="i in m.children" :key="i.id" @click="saveActive(i.path)">
-                            <i class="el-icon-menu"></i>{{ i.name }}
+                        <el-menu-item :index="child.path" v-for="child in menu.children" :key="child.id"
+                            @click="saveActive(i.path)">
+                            {{ child.name }}
                         </el-menu-item>
-                        <!-- <el-menu-item index="1-2">Coupon</el-menu-item> -->
                     </el-submenu>
                 </el-menu>
-            </el-aside>
+            </div>
+            <el-button type="primary" @click="backToLogin" class="btns" style="margin: 10px 0;">Exit</el-button>
+        </el-header>
+        <el-container>
+
             <!-- 主体区域 -->
             <el-main class="el-main">
                 <router-view></router-view>
@@ -89,19 +82,18 @@ export default {
     padding-left: 10px;
 }
 
-.toggle-collapse {
-    color: #fff;
-    text-align: center;
-    font-size: 20px;
-    line-height: 20px;
-    cursor: pointer;
-    letter-spacing: 0.3rem;
+// .toggle-collapse {
+//     color: #fff;
+//     text-align: center;
+//     font-size: 20px;
+//     line-height: 20px;
+//     cursor: pointer;
+//     letter-spacing: 0.3rem;
 
-}
+// }
 
 .el-menu {
-    /* background-color: #333744; */
-    color: #fff;
+    color: #141313;
 }
 
 .homelogo {
@@ -114,15 +106,12 @@ export default {
     padding: 0;
 }
 
-/* .btns {
-  display: flex;
-  justify-content: end;
-} */
+
 .el-header {
-    background-color: #373d41;
+    background-color: #ffffff;
     display: flex;
     justify-content: space-between;
-    color: #fff;
+    color: #000;
     font-size: 20px;
     padding-left: 0;
 
