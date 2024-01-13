@@ -17,10 +17,10 @@ export default {
         return {
             // title: '優惠券',
             CouponList: [
-                { name: 'Iphone', discount: 0.8, expire: '2023-01-01' },
-                { name: 'Iphone', discount: 0.8, expire: '2023-01-01' },
-                { name: 'Iphone', discount: 0.8, expire: '2023-01-01' },
-                { name: 'Iphone', discount: 0.8, expire: '2023-01-01' }
+                { name: 'iPhone 11', discount: 0.8, expire: '2023-01-01' },
+                { name: 'Mi 11', discount: 0.8, expire: '2023-01-01' },
+                { name: 'Huawei Mate 60', discount: 0.8, expire: '2023-01-01' },
+                { name: 'iPhone X', discount: 0.8, expire: '2023-01-01' }
             ]
         }
     }
