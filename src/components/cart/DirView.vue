@@ -50,15 +50,18 @@
             <el-col :span="6"> Total amount: {{ total_num }}</el-col>
             <el-col :span="6"> Sum: {{ total_price }}</el-col>
         </el-row>
+        <br/>
         <!-- 三種算法選擇 -->
         <el-row :gutter="20" class="algo_option" type="flex">
             <el-col :span="6"><el-card><el-button type="primary">Warehouse</el-button></el-card> </el-col>
             <el-col :span="6"><el-card><el-button type="success">Greedy</el-button></el-card></el-col>
             <el-col :span="6"><el-card><el-button type="info">Random</el-button></el-card></el-col>
         </el-row>
+        <br/>
         <el-row class="rebate-chart">
             <el-card>
-                <div id="chart1" style="width:600px;height:400px"></div>
+                <div>Rebates amount of every plan</div>
+                <div id="chart1" style="width:100%;height:400px"></div>
             </el-card>
         </el-row>
     </el-card>
@@ -108,9 +111,9 @@ export default {
 
         // 指定图表的配置项和数据
         var option = {
-            title: {
-                text: 'Rebate'
-            },
+            // title: {
+            //     text: 'Rebate'
+            // },
             tooltip: {},
             legend: {
                 // data: ['Rebate']

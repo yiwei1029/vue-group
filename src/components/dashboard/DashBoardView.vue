@@ -4,11 +4,10 @@
             <!-- 頂部統計區域 -->
             <el-card>
                 <el-row :gutter="20">
-                    <el-col :span="6" v-for="item in     Stats    ">
+                    <el-col :span="6" v-for="item in Stats">
                         <div>
-                            <el-statistic :title="item.title" group-separator="," :style="randomRgb()"
-                                style="height: 60px; line-height: 60px;">
-                                <template slot=" formatter">
+                            <el-statistic :title="item.title" group-separator="," :style="randomRgb()">
+                                <template slot="formatter">
                                     {{ item.value }}
                                 </template>
                             </el-statistic>
@@ -29,12 +28,14 @@
                     <el-col :span="12">
                         <el-card>
                             <!-- 商品种类百分比 -->
+                            <div>Commodity Classification</div>
                             <div id="chart2" style="width:300px ;height:200px"></div>
                         </el-card>
                     </el-col>
                     <el-col :span="12">
                         <el-card>
                             <!-- 成功失败百分比 -->
+                            <div>Rebate successs and fail ratio</div>
                             <div id="chart3" style="width:300px;height:200px"></div>
                         </el-card>
                     </el-col>
@@ -217,7 +218,7 @@ export default {
             let R = Math.floor(Math.random() * 130 + 110);
             let G = Math.floor(Math.random() * 130 + 110);
             let B = Math.floor(Math.random() * 130 + 110);
-            console.log(R, G, B)
+            // console.log(R, G, B)
             return { background: 'rgb(' + R + ',' + G + ',' + B + ', .5)', borderRadius: '5px' }
         }
     }
