@@ -9,3 +9,6 @@ font-size: 20x;
 .el-table{
     margin-top: 10px;
 }
+::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }

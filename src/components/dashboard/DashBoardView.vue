@@ -45,7 +45,7 @@
             <el-main>
                 <el-card>
                     <el-row>
-                        <div class="plans-title">Last Group Plans</div>
+                        <div class="plans-title">Latest Group Plans</div>
                     </el-row>
                     <el-row>
                         <el-table :data="GroupPlans" style="width: 100%" :cell-style="{ textAlign: 'center' }"
