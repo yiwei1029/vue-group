@@ -1,70 +1,72 @@
 <template>
-    <el-card class="box-card">
+    <el-row><el-col span="12">
+            <el-card class="box-card">
 
-        <el-row :gutter="20">
-            <el-col :span="6">
-                <!-- 搜索 -->
-                <el-input v-model="queryInfo.query" placeholder="input here" class="input-with-select">
-                    <el-button slot="append" icon="el-icon-search"></el-button>
-                </el-input></el-col>
+                <el-row :gutter="20">
+                    <el-col :span="6">
+                        <!-- 搜索 -->
+                        <el-input v-model="queryInfo.query" placeholder="input here" class="input-with-select">
+                            <el-button slot="append" icon="el-icon-search"></el-button>
+                        </el-input></el-col>
 
-        </el-row>
+                </el-row>
 
-        <!-- table區域 -->
-        <el-table :data="CartList" style="width: 100%" border>
-            <el-table-column type="index" label="Number" width="80">
-            </el-table-column>
-            <el-table-column prop="name" label="Name" width="180">
-            </el-table-column>
-            <el-table-column prop="goodsimg" label="Detail" width="180">
-                <template slot-scope="scope">
-                    <img :src="scope.row.goodsimg" width="70" height="70" />
-                    <!-- <img src="../../assets/pics/tshirt.png" min-width="70" height="70" /> -->
-                </template>
-            </el-table-column>
-            <el-table-column prop="price" label="Price" width="180">
-            </el-table-column>
-            <el-table-column prop="store" label="Store" width="180">
-            </el-table-column>
-            <!-- 更改數量 -->
-            <el-table-column label="amount">
-                <template slot-scope="scope">
-                    <div>
-                        <el-input-number :min="1" @change="handleChange" size="mini" v-model="scope.row.amount"
-                            placeholder="0" :value="0">
-                        </el-input-number>
-                    </div>
-                </template>
-            </el-table-column>
-            <!-- 刪除操作 -->
-            <el-table-column label="operation">
-                <template slot-scope="scope">
-                    <el-button @click.native.prevent="deleteRow(scope.$index, scope.row)" type="danger" size="mini">
-                        delete
-                    </el-button>
-                </template>
-            </el-table-column>
+                <!-- table區域 -->
+                <el-table :data="CartList" style="width: 100%" border>
+                    <el-table-column type="index" label="Number" width="80">
+                    </el-table-column>
+                    <el-table-column prop="name" label="Name" width="150">
+                    </el-table-column>
+                    <el-table-column prop="goodsimg" label="Detail" width="100">
+                        <template slot-scope="scope">
+                            <img :src="scope.row.goodsimg" width="70" height="70" />
+                            <!-- <img src="../../assets/pics/tshirt.png" min-width="70" height="70" /> -->
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="price" label="Price" width="80">
+                    </el-table-column>
+                    <el-table-column prop="store" label="Store" width="80">
+                    </el-table-column>
+                    <!-- 更改數量 -->
+                    <el-table-column label="Amount" width="150">
+                        <template slot-scope="scope">
+                            <div>
+                                <el-input-number :min="1" @change="handleChange" size="mini" v-model="scope.row.amount"
+                                    placeholder="0" :value="0">
+                                </el-input-number>
+                            </div>
+                        </template>
+                    </el-table-column>
+                    <!-- 刪除操作 -->
+                    <el-table-column label="Operation" width="140">
+                        <template slot-scope="scope">
+                            <el-button @click.native.prevent="deleteRow(scope.$index, scope.row)" type="danger" size="mini">
+                                delete
+                            </el-button>
+                        </template>
+                    </el-table-column>
 
-        </el-table>
-        <el-row :gutter="20" class="cart_total" type="flex" justify="end">
-            <el-col :span="6" style="text-align: right;"> Total amount: {{ total_num }}</el-col>
-            <el-col :span="6" style="text-align: right;"> Sum of price: ￥{{ total_price }}</el-col>
-        </el-row>
-        <br />
-        <!-- 三種算法選擇 -->
-        <el-row :gutter="20" class="algo_option" type="flex">
-            <el-col :span="8"><el-button type="primary" @click="createChart">Warehouse</el-button> </el-col>
-            <el-col :span="8"><el-button type="success" @click="createChart">Greedy</el-button></el-col>
-            <el-col :span="8"><el-button type="info" @click="createChart">Random</el-button></el-col>
-        </el-row>
-        <br />
-        <el-row class="rebate-chart">
-            <el-card>
-                <div>Rebates amount of every plan</div>
-                <div id="chart1" style="width:100%;height:400px"></div>
+                </el-table>
+                <el-row :gutter="20" class="cart_total" type="flex" justify="end">
+                    <el-col :span="6" style="text-align: right;"> Total amount: {{ total_num }}</el-col>
+                    <el-col :span="6" style="text-align: right;"> Sum of price: ￥{{ total_price }}</el-col>
+                </el-row>
+                <br />
+                <!-- 三種算法選擇 -->
+                <el-row :gutter="20" class="algo_option" type="flex">
+                    <el-col :span="8"><el-button type="primary" @click="createChart">Warehouse</el-button> </el-col>
+                    <el-col :span="8"><el-button type="success" @click="createChart">Greedy</el-button></el-col>
+                    <el-col :span="8"><el-button type="info" @click="createChart">Random</el-button></el-col>
+                </el-row>
+                <br />
+                <el-row class="rebate-chart">
+                    <el-card>
+                        <div>Rebates Amount of Every Plan</div>
+                        <div id="chart1" style="width:100%;height:200px"></div>
+                    </el-card>
+                </el-row>
             </el-card>
-        </el-row>
-    </el-card>
+        </el-col></el-row>
 </template>
 
 <script>

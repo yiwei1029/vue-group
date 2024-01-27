@@ -1,38 +1,46 @@
 <template>
     <div>
-        <el-breadcrumb separator="/">
+        <!-- <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/home' }">Home</el-breadcrumb-item>
             <el-breadcrumb-item>Browser</el-breadcrumb-item>
             <el-breadcrumb-item>Products</el-breadcrumb-item>
-        </el-breadcrumb>
+        </el-breadcrumb> -->
 
         <!-- 內容區域 卡片  -->
-        <el-card class="box-card">
+        <el-row><el-col span="8">
+                <el-card>
+                    <el-row :gutter="20">
+                        <el-col :span="10">
+                            <!-- 搜索 -->
+                            <el-input v-model="queryInfo.query" placeholder="input here" class="input-with-select">
+                                <el-button slot="append" icon="el-icon-search"></el-button>
+                            </el-input>
+                        </el-col>
 
-            <el-row :gutter="20">
-                <el-col :span="6">
-                    <!-- 搜索 -->
-                    <el-input v-model="queryInfo.query" placeholder="input here" class="input-with-select">
-                        <el-button slot="append" icon="el-icon-search"></el-button>
-                    </el-input></el-col>
+                    </el-row>
 
-            </el-row>
+                    <!-- table區域 -->
+                    <el-row>
+                        <el-col :span="23">
+                            <el-table :data="prodList" style="width: 100%" border>
+                                <el-table-column type="index" label="Number" width="80">
+                                </el-table-column>
+                                <el-table-column prop="name" label="Name" width="80">
+                                </el-table-column>
+                                <el-table-column prop="price" label="Price" width="80">
+                                </el-table-column>
+                                <el-table-column prop="store" label="Store" width="80">
+                                </el-table-column>
+                                <el-table-column prop="" width="130" label="Operation" >
+                                    <el-button type="primary" plain>add to cart</el-button>
+                                </el-table-column>
+                            </el-table>
+                        </el-col>
+                    </el-row>
+                </el-card>
 
-            <!-- table區域 -->
-            <el-table :data="prodList" style="width: 100%" border>
-                <el-table-column type="index" label="Number" width="180">
-                </el-table-column>
-                <el-table-column prop="name" label="Name" width="180">
-                </el-table-column>
-                <el-table-column prop="price" label="Price" width="180">
-                </el-table-column>
-                <el-table-column prop="store" label="Store" width="180">
-                </el-table-column>
-                <el-table-column width="180" label="Operation">
-                    <el-button type="primary" plain>add to cart</el-button>
-                </el-table-column>
-            </el-table>
-        </el-card>
+            </el-col></el-row>
+
     </div>
 </template>
 

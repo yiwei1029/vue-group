@@ -1,14 +1,18 @@
 <template>
     <!-- <div>{{ title }}</div> -->
-    <el-card class="box-card">
-        <!-- 優惠券表格 -->
-        <el-table :data="CouponList" style="width: 100%" border>
-            <el-table-column type="index" label="Number" width="180"></el-table-column>
-            <el-table-column prop="name" label="Name" width="180"></el-table-column>
-            <el-table-column prop="discount" label="Discount" width="180"></el-table-column>
-            <el-table-column prop="expire" label="Expire Date" width="180"></el-table-column>
-        </el-table>
-    </el-card>
+    <el-row>
+        <el-col span="10">
+            <el-card class="box-card">
+                <!-- 優惠券表格 -->
+                <el-table :data="CouponList" style="width: 100%" border>
+                    <el-table-column type="index" label="Number" width="180"></el-table-column>
+                    <el-table-column prop="name" label="Name" width="180"></el-table-column>
+                    <el-table-column prop="discount" label="Discount" width="180"></el-table-column>
+                    <el-table-column prop="expire" label="Expire Date" width="180"></el-table-column>
+                </el-table>
+            </el-card>
+        </el-col>
+    </el-row>
 </template>
 
 <script>

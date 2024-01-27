@@ -1,66 +1,76 @@
 <template>
-    <el-container>
-        <el-header>
-            <!-- 頂部統計區域 -->
-            <el-card>
-                <el-row :gutter="20">
-                    <el-col :span="6" v-for="item in Stats">
-                        <div>
-                            <el-statistic :title="item.title" group-separator="," :style="randomRgb()">
-                                <template slot="formatter">
-                                    {{ item.value }}
-                                </template>
-                            </el-statistic>
-                        </div>
-                    </el-col>
-                </el-row>
-            </el-card></el-header>
-        <el-container>
-            <el-aside width="600px">
-                <el-row>
-                    <el-card style="margin-top:10px">
-                        <!-- 每個算產生的回贈隨時間變化 -->
-                        <div id="chart1" style="width:600px;height:350px"></div>
-                    </el-card>
-                </el-row>
-                <!-- 下面两个图 -->
-                <el-row :gutter="10" style="margin-top:10px">
-                    <el-col :span="12">
-                        <el-card>
-                            <!-- 商品种类百分比 -->
-                            <div>Commodity Classification</div>
-                            <div id="chart2" style="width:300px ;height:200px"></div>
+    <div>
+        <!-- 頂部統計區域 -->
+        <el-row>
+            <el-col span="12"><el-card>
+                    <el-row :gutter="20">
+                        <el-col :span="6" v-for="item in Stats">
+                            <div>
+                                <el-statistic :title="item.title" group-separator="," :style="randomRgb()">
+                                    <template slot="formatter">
+                                        {{ item.value }}
+                                    </template>
+                                </el-statistic>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </el-card></el-col>
+        </el-row>
+
+        <el-row>
+            <el-col span="8">
+                <div>
+                    <el-row>
+                        <el-card style="margin-top:10px">
+                            <!-- 每個算產生的回贈隨時間變化 -->
+                            <div id="chart1" style="width:100%;height:350px"></div>
                         </el-card>
-                    </el-col>
-                    <el-col :span="12">
-                        <el-card>
-                            <!-- 成功失败百分比 -->
-                            <div>Rebate successs and fail ratio</div>
-                            <div id="chart3" style="width:300px;height:200px"></div>
-                        </el-card>
-                    </el-col>
-                </el-row>
-            </el-aside>
-            <!-- Group Plans区域 -->
-            <el-main>
-                <el-card>
+                    </el-row>
+                    <!-- 下面两个图 -->
+                    <el-row :gutter="10" style="margin-top:10px">
+                        <el-col :span="12">
+                            <el-card>
+                                <!-- 商品种类百分比 -->
+                                <div style="font-size: 16px;">Commodity Classification</div>
+                                <div id="chart2" style="width:100% ;height:200px"></div>
+                            </el-card>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-card>
+                                <!-- 成功失败百分比 -->
+                                <div style="font-size: 16px;">Success and Fail Ratio</div>
+                                <div id="chart3" style="width:100%;height:200px"></div>
+                            </el-card>
+                        </el-col>
+                    </el-row>
+                </div>
+            </el-col>
+
+            <el-col span="4"><!-- Group Plans区域 -->
+
+                <el-card style="margin-left: 10px;margin-top: 10px;">
                     <el-row>
                         <div class="plans-title">Latest Group Plans</div>
                     </el-row>
                     <el-row>
                         <el-table :data="GroupPlans" style="width: 100%" :cell-style="{ textAlign: 'center' }"
                             :header-cell-style="{ textAlign: 'center' }">
-                            <el-table-column prop="time" label="time" width="180">
+                            <el-table-column prop="time" label="Time" width="100">
                             </el-table-column>
-                            <el-table-column prop="rebate" label="rebate" width="180">
+                            <el-table-column prop="rebate" label="Rebate" width="100">
                             </el-table-column>
                         </el-table>
                     </el-row>
 
-                </el-card>
-            </el-main>
-        </el-container>
-    </el-container>
+                </el-card></el-col>
+        </el-row>
+
+
+
+
+
+
+    </div>
 </template>
 
 <script>
@@ -112,7 +122,7 @@ export default {
             },
             tooltip: {},
             legend: {
-                // data: ['Rebate']
+                data: ['Warehouse', 'Greedy', 'Random']
             },
             xAxis: {
                 data: this.RebateByTime['W'].map(i => i.time)
@@ -120,16 +130,19 @@ export default {
             yAxis: {},
             series: [
                 {
+                    name: 'Warehouse',
                     type: 'line',
 
                     data: this.RebateByTime['W'].map(i => i.rebate)
 
                 }, {
+                    name: 'Greedy',
                     type: 'line',
                     data: this.RebateByTime['G'].map(i => i.rebate)
 
                 },
                 {
+                    name: 'Random',
                     type: 'line',
                     data: this.RebateByTime['R'].map(i => i.rebate)
                 },
@@ -147,13 +160,13 @@ export default {
                 formatter: "{a} <br/>{b}: {c} ({d}%)"
             },
             //图例
-            legend: {
-                //图例垂直排列
-                orient: 'vertical',
-                x: 'left',
-                //data中的名字要与series-data中的列名对应，方可点击操控
-                data: this.GoodTypePct.map(item => item.name)
-            },
+            // legend: {
+            //     //图例垂直排列
+            //     orient: 'vertical',
+            //     x: 'left',
+            //     //data中的名字要与series-data中的列名对应，方可点击操控
+            //     data: this.GoodTypePct.map(item => item.name)
+            // },
             series: [
                 {
                     name: 'Source',
@@ -182,14 +195,14 @@ export default {
                 formatter: "{a} <br/>{b}: {c} ({d}%)"
             },
             //图例
-            legend: {
-                //图例垂直排列
-                orient: 'vertical',
-                x: 'left',
-                //data中的名字要与series-data中的列名对应，方可点击操控
-                // data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
-                data: this.SuccessPct.map(item => item.name)
-            },
+            // legend: {
+            //     //图例垂直排列
+            //     orient: 'vertical',
+            //     x: 'left',
+            //     //data中的名字要与series-data中的列名对应，方可点击操控
+            //     // data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+            //     data: this.SuccessPct.map(item => item.name)
+            // },
             series: [
                 {
                     name: 'Source',
