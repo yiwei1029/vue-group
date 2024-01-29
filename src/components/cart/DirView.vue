@@ -5,7 +5,7 @@
                 <el-row :gutter="20">
                     <el-col :span="6">
                         <!-- 搜索 -->
-                        <el-input v-model="queryInfo.query" placeholder="input here" class="input-with-select">
+                        <el-input v-model="queryInfo.query" placeholder="Input Here" class="input-with-select">
                             <el-button slot="append" icon="el-icon-search"></el-button>
                         </el-input></el-col>
 
@@ -48,8 +48,8 @@
 
                 </el-table>
                 <el-row :gutter="20" class="cart_total" type="flex" justify="end">
-                    <el-col :span="6" style="text-align: right;"> Total amount: {{ total_num }}</el-col>
-                    <el-col :span="6" style="text-align: right;"> Sum of price: ￥{{ total_price }}</el-col>
+                    <el-col :span="6" style="text-align: right;"> Total Amount: {{ total_num }}</el-col>
+                    <el-col :span="10" style="text-align: right;"> Sum of Price: ￥{{ total_price }}</el-col>
                 </el-row>
                 <br />
                 <!-- 三種算法選擇 -->
@@ -62,7 +62,7 @@
                 <el-row class="rebate-chart">
                     <el-card>
                         <div>Rebates Amount of Every Plan</div>
-                        <div id="chart1" style="width:100%;height:200px"></div>
+                        <div id="chart1" style="width:100%;height:400px"></div>
                     </el-card>
                 </el-row>
             </el-card>
@@ -81,12 +81,12 @@ export default {
                 pagesize: 2
             },
             CartList: [
-                { name: 'Iphone', price: 10000, store: 'Apple', amount: 3, goodsimg: "https://rukminim2.flixcart.com/image/850/1000/xif0q/mobile/r/k/o/-original-imaghx9qtwbnhwvy.jpeg?q=90" },
+                { name: 'iPhone', price: 10000, store: 'Apple', amount: 3, goodsimg: "https://rukminim2.flixcart.com/image/850/1000/xif0q/mobile/r/k/o/-original-imaghx9qtwbnhwvy.jpeg?q=90" },
                 { name: 'Xiaomi TV', price: 2999, store: 'Xiaomi', amount: 1, goodsimg: "https://www.courts.com.sg/media/catalog/product/i/p/ip162055_00.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=770&width=770&canvas=770:770" },
                 { name: 'T-shirt', price: 299, store: 'Adidas', amount: 1, goodsimg: "https://mobile.yoox.com/images/items/10/10087450OM_14_f.jpg?impolicy=crop&width=387&height=490" }],
-            Rebate: [{ algo_name: 'WareHouse-First', rebate: 50 },
-            { algo_name: 'Baseline-Greedy', rebate: 20 },
-            { algo_name: 'Baseline-Random', rebate: 10 }],
+            Rebate: [{ algo_name: 'WareHouse-First', rebate: 500 },
+            { algo_name: 'Baseline-Greedy', rebate: 200 },
+            { algo_name: 'Baseline-Random', rebate: 100 }],
         }
 
     },
@@ -124,7 +124,8 @@ export default {
                     {
                         // name: 'Rebate',
                         type: 'bar',
-                        data: this.Rebate.map(item => item.rebate)
+                        data: this.Rebate.map(item => item.rebate),
+                        // color:'#f56c6c'
                     }
                 ],
 

@@ -6,7 +6,7 @@
                     <el-row :gutter="20">
                         <el-col :span="6" v-for="item in Stats">
                             <div>
-                                <el-statistic :title="item.title" group-separator="," :style="randomRgb()">
+                                <el-statistic :title="item.title" group-separator="," :style="randomRgb()" style="padding:15px">
                                     <template slot="formatter">
                                         {{ item.value }}
                                     </template>
@@ -46,9 +46,9 @@
                 </div>
             </el-col>
 
-            <el-col span="4"><!-- Group Plans区域 -->
+            <el-col span="4" ><!-- Group Plans区域 -->
 
-                <el-card style="margin-left: 10px;margin-top: 10px;">
+                <el-card style="margin-left: 10px;margin-top: 10px; height: 660px;">
                     <el-row>
                         <div class="plans-title">Latest Group Plans</div>
                     </el-row>
@@ -85,9 +85,9 @@ export default {
                 { title: 'Today Group Plans', value: 732 }
             ],
             RebateByTime: {
-                'W': [{ time: '09:07', rebate: 50 }, { time: '09:14', rebate: 52 }],
-                'G': [{ time: '09:07', rebate: 100 }, { time: '09:14', rebate: 102 }],
-                'R': [{ time: '09:07', rebate: 401 }, { time: '09:14', rebate: 403 }]
+                'W': [{ time: '09:07', rebate: 400 }, { time: '09:14', rebate: 450 }],
+                'G': [{ time: '09:07', rebate: 300 }, { time: '09:14', rebate: 340 }],
+                'R': [{ time: '09:07', rebate: 280 }, { time: '09:14', rebate: 290 }]
             },
             GoodTypePct: [
                 { name: 'Food', value: 20 },
@@ -105,9 +105,12 @@ export default {
                 { time: '09:31:00', rebate: 43 },
                 { time: '09:31:00', rebate: 55 },
                 { time: '09:41:00', rebate: 55 },
-                { time: '09:41:00', rebate: 55 },
-                { time: '09:51:00', rebate: 55 },
-                { time: '10:01:00', rebate: 55 },
+                { time: '09:41:00', rebate: 34 },
+                { time: '09:51:00', rebate: 45 },
+                { time: '10:01:00', rebate: 64 },
+                { time: '10:11:00', rebate: 53 },
+                { time: '10:21:00', rebate: 47 },
+                { time: '10:31:00', rebate: 64 },
             ]
 
         }
@@ -125,7 +128,8 @@ export default {
                 data: ['Warehouse', 'Greedy', 'Random']
             },
             xAxis: {
-                data: this.RebateByTime['W'].map(i => i.time)
+                data: this.RebateByTime['W'].map(i => i.time),
+                name:'Time'
             },
             yAxis: {},
             series: [
