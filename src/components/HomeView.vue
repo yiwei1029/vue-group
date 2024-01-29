@@ -3,7 +3,7 @@
         <el-header class="el-header">
             <div>
                 <!-- <img class="homelogo" src="../assets/homelogo.png" alt=""> -->
-                <span>Group Rebate</span>
+                <span>GroupRebate</span>
                 <el-menu class="el-menu" :unique-opened="true" router mode="horizontal" :default-active="activePath">
                     <el-submenu :index="menu.id" v-for="menu in MenuList" :key="menu.id">
                         <template slot="title">
