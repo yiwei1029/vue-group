@@ -12,7 +12,7 @@
                 </el-row>
 
                 <!-- table區域 -->
-                <el-table :data="CartList" style="width: 100%" border>
+                <el-table :data="CartList" style="width: 100% " height="200" border>
                     <el-table-column type="index" label="Number" width="80">
                     </el-table-column>
                     <el-table-column prop="name" label="Name" width="150">
@@ -51,19 +51,19 @@
                     <el-col :span="6" style="text-align: right;"> Total Amount: {{ total_num }}</el-col>
                     <el-col :span="10" style="text-align: right;"> Sum of Price: ￥{{ total_price }}</el-col>
                 </el-row>
-                <br />
+                <!-- <br /> -->
                 <!-- 三種算法選擇 -->
                 <el-row :gutter="20" class="algo_option" type="flex">
                     <el-col :span="8"><el-button type="primary" @click="createChart">Warehouse</el-button> </el-col>
                     <el-col :span="8"><el-button type="success" @click="createChart">Greedy</el-button></el-col>
                     <el-col :span="8"><el-button type="info" @click="createChart">Random</el-button></el-col>
                 </el-row>
-                <br />
+                <!-- <br /> -->
                 <el-row class="rebate-chart">
-                    <el-card>
-                        <div>Rebates Amount of Every Plan</div>
-                        <div id="chart1" style="width:100%;height:400px"></div>
-                    </el-card>
+                    <!-- <el-card style="padding: 0;"> -->
+                    <div>Rebates Amount of Every Plan</div>
+                    <div id="chart1" style="width:100%;height:200px ;"></div>
+                    <!-- </el-card> -->
                 </el-row>
             </el-card>
         </el-col></el-row>
@@ -83,8 +83,9 @@ export default {
             CartList: [
                 { name: 'iPhone', price: 10000, store: 'Apple', amount: 3, goodsimg: "https://rukminim2.flixcart.com/image/850/1000/xif0q/mobile/r/k/o/-original-imaghx9qtwbnhwvy.jpeg?q=90" },
                 { name: 'Xiaomi TV', price: 2999, store: 'Xiaomi', amount: 1, goodsimg: "https://www.courts.com.sg/media/catalog/product/i/p/ip162055_00.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=770&width=770&canvas=770:770" },
-                { name: 'T-shirt', price: 299, store: 'Adidas', amount: 1, goodsimg: "https://mobile.yoox.com/images/items/10/10087450OM_14_f.jpg?impolicy=crop&width=387&height=490" }],
-            Rebate: [{ algo_name: 'WareHouse-First', rebate: 500 },
+                { name: 'T-shirt', price: 299, store: 'Adidas', amount: 1, goodsimg: "https://mobile.yoox.com/images/items/10/10087450OM_14_f.jpg?impolicy=crop&width=387&height=490" }
+            ],
+            Rebate: [{ algo_name: 'WareHouse-First', rebate: 400 },
             { algo_name: 'Baseline-Greedy', rebate: 200 },
             { algo_name: 'Baseline-Random', rebate: 100 }],
         }
@@ -117,9 +118,12 @@ export default {
                     // data: ['Rebate']
                 },
                 xAxis: {
-                    data: this.Rebate.map(item => item.algo_name)
+                    data: this.Rebate.map(item => item.algo_name),
+
                 },
-                yAxis: {},
+                yAxis: {
+                    interval: 200
+                },
                 series: [
                     {
                         // name: 'Rebate',
@@ -185,4 +189,12 @@ export default {
 .rebate-chart {
     margin-top: 20px;
 }
+
+.el-table__body-wrapper::-webkit-scrollbar {
+  // 表格右侧滚动
+  width: 10px !important;
+  // 表格下方滚动
+  height: 10px !important;
+}
+
 </style>    

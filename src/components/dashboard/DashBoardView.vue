@@ -23,7 +23,7 @@
                     <el-row>
                         <el-card style="margin-top:10px">
                             <!-- 每個算產生的回贈隨時間變化 -->
-                            <div id="chart1" style="width:100%;height:350px"></div>
+                            <div id="chart1" style="width:100%;height:200px"></div>
                         </el-card>
                     </el-row>
                     <!-- 下面两个图 -->
@@ -32,7 +32,7 @@
                             <el-card>
                                 <!-- 商品种类百分比 -->
                                 <div style="font-size: 16px;">Commodity Classification</div>
-                                <div id="chart2" style="width:100% ;height:200px"></div>
+                                <div id="chart2" style="width:125% ;height:200px"></div>
                             </el-card>
                         </el-col>
                         <el-col :span="12">
@@ -48,16 +48,16 @@
 
             <el-col span="4" ><!-- Group Plans区域 -->
 
-                <el-card style="margin-left: 10px;margin-top: 10px; height: 660px;">
+                <el-card style="margin-left: 10px;margin-top: 10px; height: 516px;">
                     <el-row>
                         <div class="plans-title">Latest Group Plans</div>
                     </el-row>
                     <el-row>
                         <el-table :data="GroupPlans" style="width: 100%" :cell-style="{ textAlign: 'center' }"
                             :header-cell-style="{ textAlign: 'center' }">
-                            <el-table-column prop="time" label="Time" width="100">
+                            <el-table-column prop="time" label="Time" width="120">
                             </el-table-column>
-                            <el-table-column prop="rebate" label="Rebate" width="100">
+                            <el-table-column prop="rebate" label="Rebate" width="130">
                             </el-table-column>
                         </el-table>
                     </el-row>
@@ -85,7 +85,7 @@ export default {
                 { title: 'Today Group Plans', value: 732 }
             ],
             RebateByTime: {
-                'W': [{ time: '09:07', rebate: 400 }, { time: '09:14', rebate: 450 }],
+                'W': [{ time: '09:07', rebate: 400 }, { time: '09:14', rebate: 600 }],
                 'G': [{ time: '09:07', rebate: 300 }, { time: '09:14', rebate: 340 }],
                 'R': [{ time: '09:07', rebate: 280 }, { time: '09:14', rebate: 290 }]
             },
@@ -125,13 +125,14 @@ export default {
             },
             tooltip: {},
             legend: {
-                data: ['Warehouse', 'Greedy', 'Random']
+                data: ['Warehouse', 'Greedy', 'Random'],
+                bottom:0
             },
             xAxis: {
                 data: this.RebateByTime['W'].map(i => i.time),
                 name:'Time'
             },
-            yAxis: {},
+            yAxis: {interval:200},
             series: [
                 {
                     name: 'Warehouse',
@@ -163,14 +164,14 @@ export default {
                 trigger: 'item',
                 formatter: "{a} <br/>{b}: {c} ({d}%)"
             },
-            //图例
-            // legend: {
-            //     //图例垂直排列
-            //     orient: 'vertical',
-            //     x: 'left',
-            //     //data中的名字要与series-data中的列名对应，方可点击操控
-            //     data: this.GoodTypePct.map(item => item.name)
-            // },
+            // 图例
+            legend: {
+                orient: '',
+                left:0,
+                top:10,
+                //data中的名字要与series-data中的列名对应，方可点击操控
+                data: this.GoodTypePct.map(item => item.name)
+            },
             series: [
                 {
                     name: 'Source',
@@ -198,15 +199,15 @@ export default {
                 trigger: 'item',
                 formatter: "{a} <br/>{b}: {c} ({d}%)"
             },
-            //图例
-            // legend: {
-            //     //图例垂直排列
-            //     orient: 'vertical',
-            //     x: 'left',
-            //     //data中的名字要与series-data中的列名对应，方可点击操控
-            //     // data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
-            //     data: this.SuccessPct.map(item => item.name)
-            // },
+            // 图例
+            legend: {
+                //图例垂直排列
+                orient: 'vertical',
+                x: 'left',
+                //data中的名字要与series-data中的列名对应，方可点击操控
+                // data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+                data: this.SuccessPct.map(item => item.name)
+            },
             series: [
                 {
                     name: 'Source',
@@ -255,4 +256,5 @@ export default {
 .plans-title {
     text-align: center;
 }
+
 </style>
